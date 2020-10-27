@@ -1,3 +1,5 @@
+import com.sun.pisces.PiscesRenderer;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,10 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedImage img = new BufferedImage(500, 200, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = img.createGraphics();
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
-        g2d.dispose();
         Scanner scanner = new Scanner(System.in);
         String equation = scanner.next();
         char firstNumber = equation.charAt(0);
@@ -20,6 +18,7 @@ public class Main {
         char secondNumber = equation.charAt(2);
         char secondSymbol = equation.charAt(3);
         char thirdNumber = equation.charAt(4);
+        drawBackground(img);
         drawNumber(img, firstNumber, 0);
         drawSymbol(img, firstSymbol, 100);
         drawNumber(img, secondNumber, 200);
@@ -28,10 +27,16 @@ public class Main {
 
         File outputFile = new File("number.png");
         ImageIO.write(img, "png", outputFile);
-
     }
 
-    static void drawNumber(BufferedImage img, char number, int offset) throws IOException {
+    static void drawBackground(BufferedImage img) {
+        Graphics2D g2d = img.createGraphics();
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 0, img.getWidth(), img.getHeight());
+        g2d.dispose();
+    }
+
+    static void drawNumber(BufferedImage img, char number, int offset) {
         if (number == '0') {
             drawLine(img, offset, true, false, true, true, true, true, true, false, false, false);
         }
@@ -64,30 +69,30 @@ public class Main {
         }
     }
 
-    static void drawSymbol(BufferedImage img, char number, int offset) throws IOException {
+    static void drawSymbol(BufferedImage img, char number, int offset) {
         if (number == '-') {
-            drawLine(img, offset, false, false, false, false, false, false, false, true, false, false);
+            drawMinus(img, offset);
         }
         if (number == '+') {
-            drawLine(img, offset, false, false, false, false, false, false, false, false, true, false);
+            drawPlus(img, offset);
         }
         if (number == '=') {
-            drawLine(img, offset, false, false, false, false, false, false, false, false, false, true);
+            drawEqual(img, offset);
         }
     }
 
-    static void drawLine(BufferedImage img, int offset, boolean w1, boolean w2, boolean w3, boolean h1, boolean h2, boolean h3, boolean h4, boolean e1, boolean e2, boolean e3) throws IOException {
+    static void drawLine(BufferedImage img, int offset, boolean v1, boolean v2, boolean v3, boolean h1, boolean h2, boolean h3, boolean h4, boolean e1, boolean e2, boolean e3) {
         Graphics2D g2d = img.createGraphics();
-        if (w1) {
+        if (v1) {
             g2d.setColor(Color.BLACK);
             g2d.fillRect(9 + offset, 19, 82, 2);
 
         }
-        if (w2) {
+        if (v2) {
             g2d.setColor(Color.BLACK);
             g2d.fillRect(9 + offset, 99, 82, 2);
         }
-        if (w3) {
+        if (v3) {
             g2d.setColor(Color.BLACK);
             g2d.fillRect(9 + offset, 179, 82, 2);
         }
@@ -122,4 +127,25 @@ public class Main {
             g2d.fillRect(9 + offset, 89, 82, 2);
         }
     }
+
+    static void drawMinus (BufferedImage img, int offset) {
+        Graphics2D g2d = img.createGraphics();
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(9 + offset, 99, 82, 2);
+        }
+
+    static void drawPlus (BufferedImage img, int offset) {
+        Graphics2D g2d = img.createGraphics();
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(50 + offset, 58, 2, 82);
+            g2d.fillRect(9 + offset, 99, 82, 2);
+        }
+
+    static void drawEqual (BufferedImage img, int offset) {
+        Graphics2D g2d = img.createGraphics();
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(9 + offset, 109, 82, 2);
+            g2d.fillRect(9 + offset, 89, 82, 2);
+        }
+
 }
