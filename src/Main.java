@@ -38,34 +38,34 @@ public class Main {
 
     static void drawNumber(BufferedImage img, char number, int offset) {
         if (number == '0') {
-            drawLine(img, offset, true, false, true, true, true, true, true, false, false, false);
+            drawLine(img, offset, true, false, true, true, true, true, true);
         }
         if (number == '1') {
-            drawLine(img, offset, false, false, false, false, false, true, true, false, false, false);
+            drawLine(img, offset, false, false, false, false, false, true, true);
         }
         if (number == '2') {
-            drawLine(img, offset, true, true, true, false, true, true, false, false, false, false);
+            drawLine(img, offset, true, true, true, false, true, true, false);
         }
         if (number == '3') {
-            drawLine(img, offset, true, true, true, false, false, true, true, false, false, false);
+            drawLine(img, offset, true, true, true, false, false, true, true);
         }
         if (number == '4') {
-            drawLine(img, offset, false, true, false, true, false, true, true, false, false, false);
+            drawLine(img, offset, false, true, false, true, false, true, true);
         }
         if (number == '5') {
-            drawLine(img, offset, true, true, true, true, false, false, true, false, false, false);
+            drawLine(img, offset, true, true, true, true, false, false, true);
         }
         if (number == '6') {
-            drawLine(img, offset, true, true, true, true, true, false, true, false, false, false);
+            drawLine(img, offset, true, true, true, true, true, false, true);
         }
         if (number == '7') {
-            drawLine(img, offset, true, false, false, false, false, true, true, false, false, false);
+            drawLine(img, offset, true, false, false, false, false, true, true);
         }
         if (number == '8') {
-            drawLine(img, offset, true, true, true, true, true, true, true, false, false, false);
+            drawLine(img, offset, true, true, true, true, true, true, true);
         }
         if (number == '9') {
-            drawLine(img, offset, true, true, true, true, false, true, true, false, false, false);
+            drawLine(img, offset, true, true, true, true, false, true, true);
         }
     }
 
@@ -81,7 +81,7 @@ public class Main {
         }
     }
 
-    static void drawLine(BufferedImage img, int offset, boolean v1, boolean v2, boolean v3, boolean h1, boolean h2, boolean h3, boolean h4, boolean e1, boolean e2, boolean e3) {
+    static void drawLine(BufferedImage img, int offset, boolean v1, boolean v2, boolean v3, boolean h1, boolean h2, boolean h3, boolean h4) {
         Graphics2D g2d = img.createGraphics();
         if (v1) {
             g2d.setColor(Color.BLACK);
@@ -112,40 +112,26 @@ public class Main {
             g2d.setColor(Color.BLACK);
             g2d.fillRect(89 + offset, 99, 2, 82);
         }
-        if (e1) {
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(9 + offset, 99, 82, 2);
-        }
-        if (e2) {
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(50 + offset, 58, 2, 82);
-            g2d.fillRect(9 + offset, 99, 82, 2);
-        }
-        if (e3) {
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(9 + offset, 109, 82, 2);
-            g2d.fillRect(9 + offset, 89, 82, 2);
-        }
     }
 
-    static void drawMinus (BufferedImage img, int offset) {
+    static void drawMinus(BufferedImage img, int offset) {
         Graphics2D g2d = img.createGraphics();
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(9 + offset, 99, 82, 2);
-        }
+        g2d.setColor(Color.BLACK);
+        g2d.fillRect(9 + offset, 99, 82, 2);
+    }
 
-    static void drawPlus (BufferedImage img, int offset) {
+    static void drawPlus(BufferedImage img, int offset) {
         Graphics2D g2d = img.createGraphics();
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(50 + offset, 58, 2, 82);
-            g2d.fillRect(9 + offset, 99, 82, 2);
-        }
+        g2d.setColor(Color.BLACK);
+        g2d.fillRect(50 + offset, 58, 2, 82);
+        g2d.fillRect(9 + offset, 99, 82, 2);
+    }
 
-    static void drawEqual (BufferedImage img, int offset) {
+    static void drawEqual(BufferedImage img, int offset) {
         Graphics2D g2d = img.createGraphics();
-            g2d.setColor(Color.BLACK);
-            g2d.fillRect(9 + offset, 109, 82, 2);
-            g2d.fillRect(9 + offset, 89, 82, 2);
-        }
+        g2d.setColor(Color.BLACK);
+        g2d.fillRect(9 + offset, 109, 82, 2);
+        g2d.fillRect(9 + offset, 89, 82, 2);
+    }
 
 }
