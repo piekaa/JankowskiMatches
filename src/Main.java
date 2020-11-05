@@ -134,22 +134,19 @@ public class Main {
         g2d.fillRect(9 + offset, 89, 82, 2);
     }
 
-    static void EquationResult(String[] args) {
+    static String[] equationResult(String[] args) {
         String result[] = new String[110];
         int index = 0;
-        for (int i = 0; i <= 9; i++) {
-            for (int j = 0; j <= 9; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
                 if (i + j < 10) {
-                    result[index++] = String.format("%d + %d = %d", i, j, i + j);
+                    result[index++] = String.format("%d+%d=%d", i, j, i + j);
                 }
-                if (i - j > -1) {
-                    result[index++] = String.format("%d - %d = %d", i, j, i - j);
+                if (i - j >= 0) {
+                    result[index++] = String.format("%d-%d=%d", i, j, i - j);
                 }
             }
         }
-        for (int i = 0; i < 110; i++) {
-            System.out.println(result[i]);
-        }
+        return result;
     }
-
 }
