@@ -134,7 +134,7 @@ public class Main {
         g2d.fillRect(9 + offset, 89, 82, 2);
     }
 
-    static String[] equationResult(String[] args) {
+    static String[] equationResult() {
         String result[] = new String[110];
         int index = 0;
         for (int i = 0; i < 10; i++) {
