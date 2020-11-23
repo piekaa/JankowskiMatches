@@ -10,7 +10,7 @@ public class Main {
         image.drawEquation(equation);
         image.saveToPng("matches.png");
         EquationGenerator equationGenerator = new EquationGenerator();
-        String[] quizzes = equationGenerator.correctEquationToQuizzes(equation);
+        String[] quizzes = equationGenerator.allPossibleMatchMoves(equation);
         for (String quiz : quizzes) {
             System.out.println(quiz);
         }
