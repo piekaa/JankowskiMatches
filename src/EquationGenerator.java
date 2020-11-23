@@ -1,7 +1,7 @@
 public class EquationGenerator {
     String[] correctEquations;
 
-    void equationResult() {
+    void generateCorrectEquations() {
         correctEquations = new String[110];
         int index = 0;
         for (int i = 0; i < 10; i++) {
