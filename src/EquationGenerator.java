@@ -63,6 +63,20 @@ public class EquationGenerator {
         }
     }
 
+    boolean isEquationCorrect(String equation) {
+        boolean correctEquation;
+        int a = equation.charAt(0) - '0';
+        int b = equation.charAt(2) - '0';
+        int c = equation.charAt(4) - '0';
+        char sign = equation.charAt(1);
+        if (sign == '+') {
+            correctEquation = a + b == c;
+        } else {
+            correctEquation = a - b == c;
+        }
+        return correctEquation;
+    }
+
     String[] allPossibleMatchMoves(String equation) {
 
         int movingMatchInCharacter = correctEquationToQuizzes(equation).length;
@@ -104,7 +118,9 @@ public class EquationGenerator {
                 String equationWithoutMatch = new String(equationChar);
                 String[] equationsWithAddedMatch = addMatchToCharacter(equationWithoutMatch, i);
                 for (String equationWithAddedMatch : equationsWithAddedMatch) {
-                    tempResults[k++] = equationWithAddedMatch;
+                    if (!isEquationCorrect(equationWithAddedMatch)) {
+                        tempResults[k++] = equationWithAddedMatch;
+                    }
                 }
                 equationChar[i] = temp;
             }
