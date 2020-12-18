@@ -20,11 +20,9 @@ public class Main {
         for (String correctEquation : correctEquations) {
             for (String quiz : equationGenerator.allPossibleMatchMoves(correctEquation)) {
                 if (!quizzes.containsKey(quiz)) {
-                    Set<String> newSet = new HashSet<>();
-                    quizzes.put(quiz, newSet);
+                    quizzes.put(quiz, new HashSet<>());
                 }
-                Set<String> s = quizzes.get(quiz);
-                s.add(correctEquation);
+                quizzes.get(quiz).add(correctEquation);
             }
         }
     }
