@@ -1,29 +1,32 @@
+import quizImage.ImageConfiguration;
+import quizImage.ImageService;
+import quizzes.QuizConfiguration;
+import quizzes.QuizService;
+
 import java.io.IOException;
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        Scanner scanner = new Scanner(System.in);
-//        String equation = scanner.next();
-//        Image image = new Image();
-//        image.drawEquation(equation);
-//        image.saveToPng("matches.png");
-//        String[] quizzes = equationGenerator.allPossibleMatchMoves(equation);
-//        for (String quiz : quizzes) {
-//            System.out.println(quiz);
-//        }
-        EquationGenerator equationGenerator = new EquationGenerator();
-        Map<String, Set<String>> quizzes = new HashMap<>();
-        equationGenerator.generateCorrectEquations();
-        String[] correctEquations = equationGenerator.correctEquations;
-        for (String correctEquation : correctEquations) {
-            for (String quiz : equationGenerator.allPossibleMatchMoves(correctEquation)) {
-                if (!quizzes.containsKey(quiz)) {
-                    quizzes.put(quiz, new HashSet<>());
-                }
-                quizzes.get(quiz).add(correctEquation);
-            }
-        }
+
+        Scanner scanner = new Scanner(System.in);
+        QuizService quizService = QuizConfiguration.getQuizService();
+        ImageService imageService = ImageConfiguration.getImageService();
+
+        String randomQuiz = quizService.randomQuiz();
+
+        byte[] imageBytes = imageService.drawEquation(randomQuiz);
+
+        Files.write(Paths.get("image.png"), imageBytes);
+
+        System.out.println(randomQuiz);
+
+        String solution = scanner.next();
+
+        System.out.println(quizService.isSolutionCorrect(randomQuiz, solution));
     }
+
 }
