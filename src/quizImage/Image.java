@@ -1,13 +1,13 @@
-import javax.imageio.ImageIO;
+package quizImage;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class Image {
-    BufferedImage image;
+class Image {
 
-    void drawEquation(String equation) {
+    private BufferedImage image;
+
+    BufferedImage drawEquation(String equation) {
         image = new BufferedImage(500, 200, BufferedImage.TYPE_INT_RGB);
         char firstNumber = equation.charAt(0);
         char firstSymbol = equation.charAt(1);
@@ -20,25 +20,18 @@ public class Image {
         drawNumber(secondNumber, 200);
         drawSymbol(secondSymbol, 300);
         drawNumber(thirdNumber, 400);
+        return image;
     }
 
-    void saveToPng(String fileName) {
-        File outputFile = new File(fileName);
-        try {
-            ImageIO.write(image, "png", outputFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    void drawBackground() {
+    private void drawBackground() {
         Graphics2D g2d = image.createGraphics();
         g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, image.getWidth(), image.getHeight());
         g2d.dispose();
     }
 
-    void drawNumber(char number, int offset) {
+    private void drawNumber(char number, int offset) {
         if (number == '0') {
             drawLine(offset, true, false, true, true, true, true, true);
         }
@@ -71,26 +64,23 @@ public class Image {
         }
     }
 
-    void drawSymbol(char number, int offset) {
-        if (number == '-') {
-            drawMinus(offset);
-        }
+    private void drawSymbol(char number, int offset) {
         if (number == '+') {
             drawPlus(offset);
+        }
+        if (number == '-') {
+            drawMinus(offset);
         }
         if (number == '=') {
             drawEqual(offset);
         }
-
-
     }
 
-    void drawLine(int offset, boolean v1, boolean v2, boolean v3, boolean h1, boolean h2, boolean h3, boolean h4) {
+    private void drawLine(int offset, boolean v1, boolean v2, boolean v3, boolean h1, boolean h2, boolean h3, boolean h4) {
         Graphics2D g2d = image.createGraphics();
         if (v1) {
             g2d.setColor(Color.BLACK);
             g2d.fillRect(9 + offset, 19, 82, 2);
-
         }
         if (v2) {
             g2d.setColor(Color.BLACK);
@@ -118,20 +108,20 @@ public class Image {
         }
     }
 
-    void drawMinus(int offset) {
-        Graphics2D g2d = image.createGraphics();
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(9 + offset, 99, 82, 2);
-    }
-
-    void drawPlus(int offset) {
+    private void drawPlus(int offset) {
         Graphics2D g2d = image.createGraphics();
         g2d.setColor(Color.BLACK);
         g2d.fillRect(50 + offset, 58, 2, 82);
         g2d.fillRect(9 + offset, 99, 82, 2);
     }
 
-    void drawEqual(int offset) {
+    private void drawMinus(int offset) {
+        Graphics2D g2d = image.createGraphics();
+        g2d.setColor(Color.BLACK);
+        g2d.fillRect(9 + offset, 99, 82, 2);
+    }
+
+    private void drawEqual(int offset) {
         Graphics2D g2d = image.createGraphics();
         g2d.setColor(Color.BLACK);
         g2d.fillRect(9 + offset, 109, 82, 2);

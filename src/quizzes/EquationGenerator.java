@@ -1,10 +1,15 @@
-public class EquationGenerator {
+package quizzes;
 
-    String[] correctEquations;
-    String[] tempResults = new String[100];
-    char[][] canChangePosition = new char[255][];
-    char[][] canTakeFrom = new char[255][];
-    char[][] canAddTo = new char[255][];
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+class EquationGenerator {
+
+    private String[] tempResults = new String[100];
+    private char[][] canChangePosition = new char[255][];
+    private char[][] canTakeFrom = new char[255][];
+    private char[][] canAddTo = new char[255][];
 
     EquationGenerator() {
         canChangePosition['0'] = new char[]{'6', '9'};
@@ -48,48 +53,49 @@ public class EquationGenerator {
         canAddTo['='] = new char[]{};
     }
 
-    void generateCorrectEquations() {
-        correctEquations = new String[110];
-        int index = 0;
+    public List<String> getCorrectEquations() {
+        List<String> correctEquations = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (i + j < 10) {
-                    correctEquations[index++] = String.format("%d+%d=%d", i, j, i + j);
+                    correctEquations.add(String.format("%d+%d=%d", i, j, i + j));
                 }
                 if (i - j >= 0) {
-                    correctEquations[index++] = String.format("%d-%d=%d", i, j, i - j);
+                    correctEquations.add(String.format("%d-%d=%d", i, j, i - j));
                 }
             }
         }
+        return correctEquations;
     }
 
-    boolean isEquationCorrect(String equation) {
+    public List<String> allPossibleMatchMoves(String correctEquation) {
+        int movingMatchInCharacter = correctEquationToQuizzes(correctEquation).length;
+        int movingMatchBetweenCharacters = changeMatchPositionBetweenCharacters(correctEquation).length;
+        String[] results = new String[movingMatchInCharacter + movingMatchBetweenCharacters];
+
+        System.arraycopy(correctEquationToQuizzes(correctEquation), 0, results, 0, movingMatchInCharacter);
+        System.arraycopy(changeMatchPositionBetweenCharacters(correctEquation), 0, results, movingMatchInCharacter, movingMatchBetweenCharacters);
+        return Arrays.asList(results);
+    }
+
+    private boolean isEquationCorrect(String equation) {
         boolean correctEquation;
+
         int a = equation.charAt(0) - '0';
         int b = equation.charAt(2) - '0';
         int c = equation.charAt(4) - '0';
+
         char sign = equation.charAt(1);
         if (sign == '+') {
             correctEquation = a + b == c;
         } else {
             correctEquation = a - b == c;
         }
+
         return correctEquation;
     }
 
-    String[] allPossibleMatchMoves(String equation) {
-
-        int movingMatchInCharacter = correctEquationToQuizzes(equation).length;
-        int movingMatchBetweenCharacters = changeMatchPositionBetweenCharacters(equation).length;
-        String[] results = new String[movingMatchInCharacter + movingMatchBetweenCharacters];
-
-        System.arraycopy(correctEquationToQuizzes(equation), 0, results, 0, movingMatchInCharacter);
-        System.arraycopy(changeMatchPositionBetweenCharacters(equation), 0, results, movingMatchInCharacter, movingMatchBetweenCharacters);
-
-        return results;
-    }
-
-    String[] correctEquationToQuizzes(String equation) {
+    private String[] correctEquationToQuizzes(String equation) {
         char[] equationChar = equation.toCharArray();
 
         int k = 0;
@@ -101,13 +107,14 @@ public class EquationGenerator {
                 equationChar[i] = temp;
             }
         }
+
         String[] results = new String[k];
         System.arraycopy(tempResults, 0, results, 0, k);
 
         return results;
     }
 
-    String[] changeMatchPositionBetweenCharacters(String equation) {
+    private String[] changeMatchPositionBetweenCharacters(String equation) {
         char[] equationChar = equation.toCharArray();
 
         int k = 0;
@@ -125,14 +132,14 @@ public class EquationGenerator {
                 equationChar[i] = temp;
             }
         }
+
         String[] results = new String[k];
         System.arraycopy(tempResults, 0, results, 0, k);
 
         return results;
-
     }
 
-    String[] addMatchToCharacter(String equation, int position) {
+    private String[] addMatchToCharacter(String equation, int position) {
         char[] equationChar = equation.toCharArray();
 
         int k = 0;
@@ -146,11 +153,11 @@ public class EquationGenerator {
                 }
             }
         }
+
         String[] results = new String[k];
         System.arraycopy(tempResults, 0, results, 0, k);
 
         return results;
-
     }
 
 }
