@@ -20,4 +20,12 @@ class GameplayServiceImplementation implements GameplayService {
 
     @Override
     public byte[] randomQuizImage() { return imageService.drawEquation(quizService.randomQuiz()); }
+
+    @Override
+    public byte[] quizImage(String quiz) {return imageService.drawEquation(quiz); }
+
+    @Override
+    public boolean checkSolution(String quiz, String solution) {
+        return quizService.isSolutionCorrect(quiz, solution);
+    }
 }
