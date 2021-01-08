@@ -23,17 +23,4 @@ class GameplayController {
         return request;
     }
 
-//    One endpoint (POST method) responsible for checking if solution is correct.
-//    example path: /gameplay/solution
-//    example request body:
-//    {
-//        "quiz" : "1+8=4",
-//        "solution": "1+2=3"
-//    }
-//
-//    example response body:
-//    {
-//        "isCorrect": false
-//    }
-
 }
