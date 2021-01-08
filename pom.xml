@@ -34,6 +34,10 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>2.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+        </dependency>
     </dependencies>
 
 	<build>
