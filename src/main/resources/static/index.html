@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="dupa">
+    halo test
+  </div>
+    <script>
+      let a = document.getElementById("dupa");
+fetch('http://localhost:8080/gameplay/quiz')
+.then(res => res.json())
+.then(json => {
+  let img = document.createElement("img");
+  console.log(json);
+  
+  img.src = `data:image/png;base64, ${json.image}`;
+  a.appendChild(img);
+})
+.catch((error) => {console.error('Error:', error);
+});
+// fetch('http://localhost:8080/solution', {
+// method: 'POST',
+// headers: {'Content-Type': 'application/json'},
+// })
+// .then(response => response.json())
+// .catch((error) => {console.error('Error:', error);
+// })
+    </script>
+</body>
+</html>
