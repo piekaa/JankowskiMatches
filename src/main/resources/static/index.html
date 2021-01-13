@@ -6,7 +6,9 @@
 </head>
 <body>
   <div id="dupa">
-    halo test
+    <label for="fname">Solution:</label><br>
+    <input type="text" id="fname" name="fname" value=""><br>
+    <p><button onclick="solution()">Solution</button></p><br>
   </div>
     <script>
       let a = document.getElementById("dupa");
@@ -15,19 +17,19 @@ fetch('http://localhost:8080/gameplay/quiz')
 .then(json => {
   let img = document.createElement("img");
   console.log(json);
-  
   img.src = `data:image/png;base64, ${json.image}`;
   a.appendChild(img);
 })
 .catch((error) => {console.error('Error:', error);
 });
-// fetch('http://localhost:8080/solution', {
-// method: 'POST',
-// headers: {'Content-Type': 'application/json'},
-// })
-// .then(response => response.json())
-// .catch((error) => {console.error('Error:', error);
-// })
+fetch('http://localhost:8080/gameplay/solution', {
+method: 'POST',
+headers: {'Content-Type': 'application/json'},
+})
+.then(response => response.json())
+function solution() {
+document.body.innerHTML = document.body.innerHTML.replace("Old", "New");
+}
     </script>
 </body>
 </html>
