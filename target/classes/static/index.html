@@ -37,7 +37,8 @@
         body: JSON.stringify({ quiz: document.jankowskiMatches.quiz, solution: solutionBox.value })
       })
         .then(response => response.json()).then(response => {
-          
+          var x = response.isCorrect;
+          document.getElementById("response").innerHTML = x;
         })
       document.getElementById("solutionBox").value;
     }
