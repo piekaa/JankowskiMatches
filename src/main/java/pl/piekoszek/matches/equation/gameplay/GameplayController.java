@@ -19,7 +19,7 @@ class GameplayController {
     }
 
     @PostMapping("/solution")
-    CheckResponse postController(@RequestBody Request s) {
-        return new CheckResponse(gameplayService.checkSolution(s.quiz, s.solution));
+    CheckResponse postController(@RequestBody Request request) {
+        return new CheckResponse(gameplayService.checkSolution(request.quiz, request.solution));
     }
 }

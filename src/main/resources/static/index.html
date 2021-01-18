@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Matches Quiz</title>
 </head>
 
 <body>
-  <div id="dupa"><br>
+  <div id="quiz"><br>
     <label for="solutionBox">Solution:</label></br>
     <input type="text" id="solutionBox" name="solutionBox" value="">
     <p><button onclick="inputBox()">Solution</button></p>
@@ -15,7 +15,7 @@
   </div>
   <script>
     document.jankowskiMatches = {}
-    let a = document.getElementById("dupa");
+    let image = document.getElementById("quiz");
     fetch('http://localhost:8080/gameplay/quiz')
       .then(res => res.json())
       .then(json => {
@@ -23,11 +23,8 @@
         console.log(json);
         img.src = `data:image/png;base64, ${json.image}`;
         document.jankowskiMatches.quiz = `${json.quiz}`;
-        a.prepend(img);
+        image.prepend(img);
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
     function inputBox() {
       fetch('http://localhost:8080/gameplay/solution', {
         method: 'POST',
@@ -37,8 +34,8 @@
         body: JSON.stringify({ quiz: document.jankowskiMatches.quiz, solution: solutionBox.value })
       })
         .then(response => response.json()).then(response => {
-          var x = response.isCorrect;
-          document.getElementById("response").innerHTML = x;
+          var responseText = response.isCorrect;
+          document.getElementById("response").innerHTML = responseText;
         })
       document.getElementById("solutionBox").value;
     }

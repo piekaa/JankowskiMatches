@@ -7,6 +7,7 @@ import java.util.List;
 class EquationGenerator {
 
     private String[] tempResults = new String[100];
+    private String[] addMatchToCharacterTempResults = new String[100];
     private char[][] canChangePosition = new char[255][];
     private char[][] canTakeFrom = new char[255][];
     private char[][] canAddTo = new char[255][];
@@ -148,14 +149,14 @@ class EquationGenerator {
                 for (int j = 0; j < canAddTo[equation.charAt(i)].length; j++) {
                     char temp = equation.charAt(i);
                     equationChar[i] = canAddTo[equation.charAt(i)][j];
-                    tempResults[k++] = new String(equationChar);
+                    addMatchToCharacterTempResults[k++] = new String(equationChar);
                     equationChar[i] = temp;
                 }
             }
         }
 
         String[] results = new String[k];
-        System.arraycopy(tempResults, 0, results, 0, k);
+        System.arraycopy(addMatchToCharacterTempResults, 0, results, 0, k);
 
         return results;
     }
