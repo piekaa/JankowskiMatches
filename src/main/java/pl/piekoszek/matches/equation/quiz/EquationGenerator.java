@@ -15,14 +15,14 @@ class EquationGenerator {
     EquationGenerator() {
         canChangePosition['0'] = new char[]{'6', '9'};
         canChangePosition['1'] = new char[]{};
-        canChangePosition['2'] = new char[]{'3'};
-        canChangePosition['3'] = new char[]{'5', '2'};
+        canChangePosition['2'] = new char[]{'3', '5'};
+        canChangePosition['3'] = new char[]{'2', '5'};
         canChangePosition['4'] = new char[]{};
-        canChangePosition['5'] = new char[]{'3'};
-        canChangePosition['6'] = new char[]{'0', '9'};
+        canChangePosition['5'] = new char[]{'2', '3'};
+        canChangePosition['6'] = new char[]{'9', '0'};
         canChangePosition['7'] = new char[]{};
         canChangePosition['8'] = new char[]{};
-        canChangePosition['9'] = new char[]{'0', '6'};
+        canChangePosition['9'] = new char[]{'6', '0'};
 
         canTakeFrom['0'] = new char[]{};
         canTakeFrom['1'] = new char[]{};
@@ -30,17 +30,17 @@ class EquationGenerator {
         canTakeFrom['3'] = new char[]{};
         canTakeFrom['4'] = new char[]{};
         canTakeFrom['5'] = new char[]{};
-        canTakeFrom['6'] = new char[]{};
+        canTakeFrom['6'] = new char[]{'5'};
         canTakeFrom['7'] = new char[]{'1'};
-        canTakeFrom['8'] = new char[]{'0'};
+        canTakeFrom['8'] = new char[]{'6', '9', '0'};
         canTakeFrom['9'] = new char[]{'3', '5'};
         canTakeFrom['+'] = new char[]{'-'};
         canTakeFrom['-'] = new char[]{};
         canTakeFrom['='] = new char[]{};
 
-        canAddTo['0'] = new char[]{};
+        canAddTo['0'] = new char[]{'8'};
         canAddTo['1'] = new char[]{'7'};
-        canAddTo['2'] = new char[]{};
+        canAddTo['2'] = new char[]{'9'};
         canAddTo['3'] = new char[]{'9'};
         canAddTo['4'] = new char[]{};
         canAddTo['5'] = new char[]{'6', '9'};
