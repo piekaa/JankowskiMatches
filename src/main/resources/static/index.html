@@ -16,7 +16,7 @@
   <script>
     document.jankowskiMatches = {}
     let image = document.getElementById("quiz");
-    fetch('http://localhost:8080/gameplay/quiz')
+    fetch('/gameplay/quiz')
       .then(res => res.json())
       .then(json => {
         let img = document.createElement("img");
@@ -26,7 +26,7 @@
         image.prepend(img);
       })
     function inputBox() {
-      fetch('http://localhost:8080/gameplay/solution', {
+      fetch('/gameplay/solution', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
