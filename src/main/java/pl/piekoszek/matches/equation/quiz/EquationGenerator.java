@@ -15,10 +15,10 @@ class EquationGenerator {
     EquationGenerator() {
         canChangePosition['0'] = new char[]{'6', '9'};
         canChangePosition['1'] = new char[]{};
-        canChangePosition['2'] = new char[]{'3', '5'};
+        canChangePosition['2'] = new char[]{'3'};
         canChangePosition['3'] = new char[]{'2', '5'};
         canChangePosition['4'] = new char[]{};
-        canChangePosition['5'] = new char[]{'2', '3'};
+        canChangePosition['5'] = new char[]{'3'};
         canChangePosition['6'] = new char[]{'9', '0'};
         canChangePosition['7'] = new char[]{};
         canChangePosition['8'] = new char[]{};
@@ -70,12 +70,12 @@ class EquationGenerator {
     }
 
     public List<String> allPossibleMatchMoves(String correctEquation) {
-        int movingMatchInCharacter = correctEquationToQuizzes(correctEquation).length;
-        int movingMatchBetweenCharacters = changeMatchPositionBetweenCharacters(correctEquation).length;
-        String[] results = new String[movingMatchInCharacter + movingMatchBetweenCharacters];
+        String[] movingMatchInCharacter = correctEquationToQuizzes(correctEquation);
+        String[] movingMatchBetweenCharacters = changeMatchPositionBetweenCharacters(correctEquation);
+        String[] results = new String[movingMatchInCharacter.length + movingMatchBetweenCharacters.length];
 
-        System.arraycopy(correctEquationToQuizzes(correctEquation), 0, results, 0, movingMatchInCharacter);
-        System.arraycopy(changeMatchPositionBetweenCharacters(correctEquation), 0, results, movingMatchInCharacter, movingMatchBetweenCharacters);
+        System.arraycopy(movingMatchInCharacter, 0, results, 0, movingMatchInCharacter.length);
+        System.arraycopy(movingMatchBetweenCharacters, 0, results, movingMatchInCharacter.length, movingMatchBetweenCharacters.length);
         return Arrays.asList(results);
     }
 
