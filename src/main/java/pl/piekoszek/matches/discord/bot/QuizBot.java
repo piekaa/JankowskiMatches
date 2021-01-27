@@ -10,14 +10,7 @@ import pl.piekoszek.matches.equation.quiz.QuizService;
 
 class QuizBot {
 
-    private QuizService quizService;
-    private String protocolHostPort;
-    private String token;
-
     public QuizBot(QuizService quizService, String protocolHostPort, String token) {
-        this.quizService = quizService;
-        this.protocolHostPort = protocolHostPort;
-        this.token = token;
 
         GatewayDiscordClient client = DiscordClientBuilder.create(token)
                 .build()
@@ -38,9 +31,9 @@ class QuizBot {
                 .filter(message -> message.getContent().equalsIgnoreCase("!quiz"))
                 .flatMap(Message::getChannel)
                 .flatMap(channel -> channel.createEmbed(
-                        spec -> spec.setImage(protocolHostPort+"/gameplay/quiz/1+2=3")
-                        .setTitle(protocolHostPort+"/gameplay/quiz/1+2=3")
-                        .setDescription("Dupa kościotrupa")
+                        spec -> spec.setImage(protocolHostPort + "/gameplay/quiz/" + quizService.randomQuiz())
+//                                .setTitle(protocolHostPort + "/gameplay/quiz/1+2=3")
+//                                .setDescription("Dupa kościotrupa")
                         )
                 )
                 .subscribe();
