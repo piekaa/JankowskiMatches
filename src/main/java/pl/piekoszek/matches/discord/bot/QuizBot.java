@@ -1,4 +1,4 @@
-package pl.piekoszek.matches.equation.gameplay;
+package pl.piekoszek.matches.discord.bot;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -6,10 +6,20 @@ import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
+import pl.piekoszek.matches.equation.quiz.QuizService;
 
-public class Bot {
-    public static void main(String[] args) {
-        GatewayDiscordClient client = DiscordClientBuilder.create("ODAzNTYwNzA0NTQ3MjI1NjEw.YA_kOQ.05-eHAVvU9xb7wOtzJo9qyXms4A")
+class QuizBot {
+
+    private QuizService quizService;
+    private String protocolHostPort;
+    private String token;
+
+    public QuizBot(QuizService quizService, String protocolHostPort, String token) {
+        this.quizService = quizService;
+        this.protocolHostPort = protocolHostPort;
+        this.token = token;
+
+        GatewayDiscordClient client = DiscordClientBuilder.create(token)
                 .build()
                 .login()
                 .block();
@@ -27,9 +37,17 @@ public class Bot {
                 .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))
                 .filter(message -> message.getContent().equalsIgnoreCase("!quiz"))
                 .flatMap(Message::getChannel)
-                .flatMap(channel -> channel.createMessage(messageCreateSpec -> messageCreateSpec.addFile()))
+                .flatMap(channel -> channel.createEmbed(
+                        spec -> spec.setImage(protocolHostPort+"/gameplay/quiz/1+2=3")
+                        .setTitle(protocolHostPort+"/gameplay/quiz/1+2=3")
+                        .setDescription("Dupa kościotrupa")
+                        )
+                )
                 .subscribe();
 
-        client.onDisconnect().block();
+//        client.onDisconnect().block();
+
+
     }
+
 }
