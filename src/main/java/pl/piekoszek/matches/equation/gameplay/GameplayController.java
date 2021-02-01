@@ -18,6 +18,11 @@ class GameplayController {
         return new Response(gameplayService.quizImage(quiz), quiz);
     }
 
+    @GetMapping(value = "/quiz/{equation}", produces = "image/png")
+    byte[] botImage(@PathVariable String equation) {
+        return gameplayService.quizImage(equation);
+    }
+
     @PostMapping("/solution")
     CheckResponse postController(@RequestBody Request request) {
         return new CheckResponse(gameplayService.checkSolution(request.quiz, request.solution));
