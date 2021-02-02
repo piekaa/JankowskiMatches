@@ -31,7 +31,7 @@ class QuizBot {
                     .filter(message -> message.getContent().equalsIgnoreCase("!quiz"))
                     .flatMap(Message::getChannel)
                     .flatMap(channel -> channel.createEmbed(
-                            spec -> spec.setImage(protocolHostPort + "/gameplay/quiz" + quizService.randomQuiz()))
+                            spec -> spec.setImage(protocolHostPort + "/gameplay/quiz/" + quizService.randomQuiz()))
                     )
                     .subscribe();
 

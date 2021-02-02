@@ -13,9 +13,9 @@ class BotConfiguration {
     @Value("")
     String token;
 
-    @Bean
-    QuizBot quizBot(QuizService quizService) {
-        System.out.println(token);
-        return new QuizBot(protocolHostPort, quizService, token);
-    }
+//    @Bean
+//    QuizBot quizBot(QuizService quizService) {
+//        System.out.println(token);
+//        return new QuizBot(protocolHostPort, quizService, token);
+//    }
 }
