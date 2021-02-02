@@ -9,9 +9,9 @@ import discord4j.core.object.entity.User;
 import pl.piekoszek.matches.equation.quiz.QuizService;
 
 
-class Bot {
+class QuizBot {
 
-    public Bot(String protocolHostPort, QuizService quizService, String token) {
+    public QuizBot(String protocolHostPort, QuizService quizService, String token) {
             GatewayDiscordClient client = DiscordClientBuilder.create(token)
                     .build()
                     .login()
